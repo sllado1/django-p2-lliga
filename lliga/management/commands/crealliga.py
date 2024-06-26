@@ -12,33 +12,34 @@ class Command(BaseCommand):
     help = 'Crea una lliga amb equips i jugadors'
  
     def obtenir_temporada(self,ann_actual):
-        valorrand = randint(0,15)
+        valorrand = randint(0,5)
         ara = timezone.now()
         ann_actual = ara.year-valorrand
         ann_seguent = ann_actual + 1
         temporada = f"{ann_actual}/{ann_seguent}"
         return temporada
+    
     def obtenir_data(self, ann):
         mes = randint(1,12)
         dia = randint(1,20)
         return datetime(ann, mes, dia)
 
     def add_arguments(self, parser):
-        parser.add_argument('titol_lliga', nargs=1, type=str)
+        parser.add_argument('nom_lliga', nargs=1, type=str)
  
     def handle(self, *args, **options):
-        titol_lliga = options['titol_lliga'][0]
-        lliga = Lliga.objects.filter(titol=titol_lliga)
+        nom_lliga = options['nom_lliga'][0]
+        lliga = Lliga.objects.filter(nom=nom_lliga)
         if lliga.count()>0:
             print("Aquesta lliga ja està creada. Posa un altre nom.")
             return
  
-        print("Creem la nova lliga: {}".format(titol_lliga))
+        print("Creem la nova lliga: {}".format(nom_lliga))
         valorrand = randint(0,15)
         ara = timezone.now()
         ann_actual = ara.year-valorrand
         strtemporada= self.obtenir_temporada(ann_actual=ann_actual);
-        lliga = Lliga(  titol=titol_lliga,
+        lliga = Lliga(  nom=nom_lliga,
                         temporada=strtemporada)
                         
         lliga.save()
