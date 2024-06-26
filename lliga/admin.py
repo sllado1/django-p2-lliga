@@ -31,11 +31,20 @@ class PartitAdmin(admin.ModelAdmin):
         ("Visitant", {"fields": ["visitant"]}),
         ("Lliga", {"fields": ["lliga"]}),
         ("Inici", {"fields": ["inici"]}),
+
     ]
     inlines = [EventInline]
     list_display = ["local","visitant","lliga","detalls", "inici"]
     list_filter = ["lliga"]
     search_fields = ["local__nom","visitant__nom"]
+    # el camp personalitzat ("resultats" o recompte de gols)
+    # el mostrem com a "readonly_field"
+    readonly_fields = ["resultat",]
+    def resultat(self,obj):
+        gols_local = obj.gols_local()
+        gols_visit = obj.gols_visitant()
+        return "{} - {}".format(gols_local,gols_visit)
+    
 
 admin.site.register(Lliga)
 admin.site.register(Equip)

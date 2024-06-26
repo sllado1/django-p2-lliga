@@ -20,7 +20,7 @@ class Jugador(models.Model):
     nom = models.CharField(max_length=100)
     equip = models.ForeignKey(Equip, on_delete=models.CASCADE, related_name='jugadors')
     posicio = models.CharField(max_length=50)
-    data_naixement = models.DateField()
+
 
     def __str__(self):
         return self.nom
