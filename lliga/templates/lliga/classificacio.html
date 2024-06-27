@@ -1,5 +1,10 @@
+{% extends "lliga/base.html" %}
+{% load static %}
+{% block content %}
+<h1>Classificació {{nomlliga}}</h1>
 <ol>
     {% for equip in classificacio %}
         <li>{{equip.1}} ({{equip.0}} punts)</li>
     {% endfor %}
     </ol>
+{% endblock %}

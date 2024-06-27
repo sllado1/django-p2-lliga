@@ -1,0 +1,18 @@
+h1 { color: blue;
+     font-size: 16px}
+
+.header{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.footer{
+    background-color: gainsboro;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    padding: 5px;
+}

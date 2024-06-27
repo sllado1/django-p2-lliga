@@ -1,3 +1,6 @@
+{% extends "lliga/base.html" %}
+{% load static %}
+{% block content %}
 <table>
     {% for row in resultats %}
     <tr>
@@ -9,3 +12,4 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
